@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
-st.set_page_config(page_title="UK CPIH Forecast with GDP", layout="centered")
+st.set_page_config(page_title="UK Inflation Forecast", layout="centered")
 st.title("📈 UK CPIH Inflation Forecast (with GDP Growth)")
 st.markdown("Upload CPIH inflation and GDP growth data to forecast future inflation using ARIMAX.")
 
