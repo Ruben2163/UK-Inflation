@@ -5,7 +5,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 st.set_page_config(page_title="UK Inflation Forecast", layout="centered")
-st.title("📈 UK CPIH Inflation Forecast (with GDP Growth)")
+st.title("UK CPIH Inflation Forecast (with GDP Growth)")
 st.markdown("Upload CPIH inflation and GDP growth data to forecast future inflation using ARIMAX.")
 
 cpih_file = st.file_uploader("Upload CPIH CSV file", type=["csv"])
@@ -31,7 +31,7 @@ if cpih_file and gdp_file:
         # --- Merge datasets ---
         df = df_cpih.join(df_gdp, how='inner')
 
-        st.subheader("📊 Historical Data")
+        st.subheader("Historical Data")
         st.line_chart(df)
 
         # Forecast horizon
@@ -63,7 +63,7 @@ if cpih_file and gdp_file:
             forecast_years = list(range(df.index[-1] + 1, df.index[-1] + 1 + n_years))
 
         # Plot forecast
-        st.subheader("📈 CPIH Forecast")
+        st.subheader("CPIH Forecast")
         fig, ax = plt.subplots(figsize=(10, 5))
         ax.plot(df.index, df['CPIH'], label='Historical CPIH', marker='o')
         ax.plot(forecast_years, forecast, label='Forecast CPIH', linestyle='--', marker='x')
@@ -76,7 +76,7 @@ if cpih_file and gdp_file:
         st.pyplot(fig)
 
         # Forecast table
-        st.subheader("📅 Forecast Table")
+        st.subheader("Forecast Table")
         forecast_df = pd.DataFrame({
             "Forecast (%)": forecast,
             "Lower 95% CI": conf_int.iloc[:, 0],
@@ -85,4 +85,4 @@ if cpih_file and gdp_file:
         st.dataframe(forecast_df.style.format("{:.2f}"))
 
     except Exception as e:
-        st.error(f"❌ Error: {e}")
+        st.error(f"Error: {e}")
