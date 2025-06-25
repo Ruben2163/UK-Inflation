@@ -38,14 +38,14 @@ if cpih_file and gdp_file:
         n_years = st.slider("Forecast horizon (years)", 1, 10, 5)
 
         # Manual ARIMA order for CPIH
-        p = st.number_input("CPIH AR term (p)", min_value=0, max_value=5, value=1)
-        d = st.number_input("CPIH Differencing (d)", min_value=0, max_value=2, value=1)
-        q = st.number_input("CPIH MA term (q)", min_value=0, max_value=5, value=1)
+        p = st.number_input("CPIH AR term (p)", min_value=0, max_value=5, value=4)
+        d = st.number_input("CPIH Differencing (d)", min_value=0, max_value=2, value=3)
+        q = st.number_input("CPIH MA term (q)", min_value=0, max_value=5, value=4)
 
         # Manual ARIMA order for GDP
-        pg = st.number_input("GDP AR term (p)", min_value=0, max_value=5, value=1, key='gdp_p')
-        dg = st.number_input("GDP Differencing (d)", min_value=0, max_value=2, value=1, key='gdp_d')
-        qg = st.number_input("GDP MA term (q)", min_value=0, max_value=5, value=1, key='gdp_q')
+        pg = st.number_input("GDP AR term (p)", min_value=0, max_value=5, value=3, key='gdp_p')
+        dg = st.number_input("GDP Differencing (d)", min_value=0, max_value=2, value=2, key='gdp_d')
+        qg = st.number_input("GDP MA term (q)", min_value=0, max_value=5, value=4, key='gdp_q')
 
         with st.spinner("Forecasting GDP growth..."):
             gdp_model = ARIMA(df['GDP_Growth'], order=(pg, dg, qg))
